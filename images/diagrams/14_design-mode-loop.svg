@@ -28,7 +28,7 @@
 
   <!-- タイトル -->
   <text x="24" y="40" class="title">Design Mode のループ: クリックして伝える → 直る → 確かめる</text>
-  <text x="24" y="62" class="cap">注釈（Design Feedback）を送ると Claude Code が直し、ブラウザが自動で再読み込みする</text>
+  <text x="24" y="62" class="cap">注釈を送ると Claude Code が直し、ブラウザが自動で再読み込みする</text>
 
   <!-- 凡例（色分け） -->
   <rect x="544" y="52" width="12" height="12" rx="2" fill="#DDF4FF" stroke="#0969DA"/>

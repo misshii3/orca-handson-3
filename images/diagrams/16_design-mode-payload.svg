@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 576" width="880" height="576" role="img" aria-labelledby="t d">
+  <title id="t">Design Mode で送られるもの・送られないもの</title>
+  <desc id="d">左右 2 枚のカード。左の青いカードは「送られるもの」＝ Design Feedback の中身で 6 項目。URL とビューポートのサイズ（例 http://localhost:3000/、1280 × 720 px）。要素のセレクタと DOM 上の位置（例 dd#total、body &gt; main.page &gt; section#summary-card &gt; … &gt; dd#total）。要素のテキストと近くの文字（例「3,817 円」、近くの「合計（税込）」）。計算済み CSS として色・サイズ・余白・フォント（例 color: rgb(255, 255, 255)）。要素の HTML（例 &lt;dd id="total"&gt;3,817 円&lt;/dd&gt;）。あなたのメモと意図（変更 / 質問）。右の灰色のカードは「送られないもの」で 4 項目。ページ全体の HTML（選んだ要素とその周辺だけが届く）。スクリーンショット画像（1.4.200 の注釈送信はテキストのみ）。ソースファイル名と行番号（ソースマップが無いため。エージェントは届いたセレクタで grep して探す）。Cookie・ログイン情報・フォームに入れた値（選んだ要素の中に含まれていない限り）。右カードの下に、だから Claude Code は届いたセレクタや文字でリポジトリを grep して該当ファイルを自分で探す、と補足。最下部の黄色い帯は業務での注意: 要素の中身の文字（個人情報・社外秘）は、選んだ要素に含まれていればそのまま送られる。送ってよい画面・要素かを先に判断する。付録 E（業務での判断基準）を参照。</desc>
+  <defs>
+    <!-- 送られる印 / 送られない印 -->
+    <g id="yes">
+      <circle r="7" fill="#FFFFFF" stroke="#0969DA" stroke-width="1.25"/>
+      <path d="M-3.5 0.5l2.5 2.5l4.5-5" fill="none" stroke="#0969DA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="no">
+      <circle r="7" fill="#FFFFFF" stroke="#57606A" stroke-width="1.25"/>
+      <path d="M-3 -3l6 6M3 -3l-6 6" fill="none" stroke="#57606A" stroke-width="1.75" stroke-linecap="round"/>
+    </g>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif; fill: #1F2328; }
+      .title { font-size: 20px; font-weight: bold; }
+      .head { font-size: 15px; font-weight: 600; }
+      .body { font-size: 13px; }
+      .b600 { font-size: 13px; font-weight: 600; }
+      .cap { font-size: 12px; fill: #57606A; }
+      .mono12 { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+      .mono11 { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; }
+      .item-yes { fill: #DDF4FF; stroke: #0969DA; stroke-width: 1; }
+      .item-no { fill: #F6F8FA; stroke: #D0D7DE; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <!-- 背景カード -->
+  <rect x="0.5" y="0.5" width="879" height="575" rx="12" fill="#FFFFFF" stroke="#D0D7DE"/>
+
+  <!-- タイトル -->
+  <text x="24" y="40" class="title">Design Mode で送られるもの・送られないもの</text>
+  <text x="24" y="62" class="cap">「ページ要素に注釈を付ける」→「送信」で、Claude Code のターミナルに届くテキストの中身</text>
+
+  <!-- ===== 左: 送られるもの ===== -->
+  <rect x="24" y="80" width="400" height="396" rx="12" fill="#FFFFFF" stroke="#0969DA" stroke-width="1.5"/>
+  <text x="40" y="106" class="head" fill="#0969DA">送られるもの <tspan class="cap" font-weight="400">　＝ Design Feedback の中身</tspan></text>
+
+  <!-- 1 URL とビューポート -->
+  <rect x="40" y="124" width="368" height="44" rx="6" class="item-yes"/>
+  <use href="#yes" x="56" y="146"/>
+  <text x="72" y="142" class="b600">URL とビューポートのサイズ</text>
+  <text x="72" y="159" class="cap"><tspan class="mono12">http://localhost:3000/</tspan>　1280 × 720 px</text>
+
+  <!-- 2 セレクタと DOM 上の位置 -->
+  <rect x="40" y="176" width="368" height="76" rx="6" class="item-yes"/>
+  <use href="#yes" x="56" y="198"/>
+  <text x="72" y="194" class="b600">要素のセレクタと DOM 上の位置</text>
+  <text x="72" y="211" class="cap"><tspan class="mono12">dd#total</tspan>　（id があれば短い）</text>
+  <text x="72" y="227" class="mono11" fill="#57606A">body &gt; main.page &gt; section#summary-card</text>
+  <text x="72" y="242" class="mono11" fill="#57606A">　&gt; … &gt; dd#total</text>
+
+  <!-- 3 テキストと近くの文字 -->
+  <rect x="40" y="260" width="368" height="44" rx="6" class="item-yes"/>
+  <use href="#yes" x="56" y="282"/>
+  <text x="72" y="278" class="b600">要素のテキストと近くの文字</text>
+  <text x="72" y="295" class="cap">「3,817 円」　近く: 「合計（税込）」</text>
+
+  <!-- 4 計算済み CSS -->
+  <rect x="40" y="312" width="368" height="44" rx="6" class="item-yes"/>
+  <use href="#yes" x="56" y="334"/>
+  <text x="72" y="330" class="b600">計算済み CSS（色・サイズ・余白・フォント）</text>
+  <text x="72" y="347" class="cap"><tspan class="mono12">color: rgb(255, 255, 255)</tspan>　など</text>
+
+  <!-- 5 要素の HTML -->
+  <rect x="40" y="364" width="368" height="44" rx="6" class="item-yes"/>
+  <use href="#yes" x="56" y="386"/>
+  <text x="72" y="382" class="b600">要素の HTML</text>
+  <text x="72" y="399" class="mono12">&lt;dd id="total"&gt;3,817 円&lt;/dd&gt;</text>
+
+  <!-- 6 メモと意図 -->
+  <rect x="40" y="416" width="368" height="44" rx="6" class="item-yes"/>
+  <use href="#yes" x="56" y="438"/>
+  <text x="72" y="434" class="b600">あなたのメモと意図（変更 / 質問）</text>
+  <text x="72" y="451" class="cap">例: 「合計金額が白文字で読めない」＋ 変更</text>
+
+  <!-- ===== 右: 送られないもの ===== -->
+  <rect x="456" y="80" width="400" height="396" rx="12" fill="#FFFFFF" stroke="#57606A" stroke-width="1.5"/>
+  <text x="472" y="106" class="head" fill="#57606A">送られないもの</text>
+
+  <!-- 1 ページ全体の HTML -->
+  <rect x="472" y="124" width="368" height="48" rx="6" class="item-no"/>
+  <use href="#no" x="488" y="148"/>
+  <text x="504" y="143" class="b600">ページ全体の HTML</text>
+  <text x="504" y="161" class="cap">選んだ要素とその周辺だけが届く</text>
+
+  <!-- 2 スクリーンショット -->
+  <rect x="472" y="184" width="368" height="48" rx="6" class="item-no"/>
+  <use href="#no" x="488" y="208"/>
+  <text x="504" y="203" class="b600">スクリーンショット画像</text>
+  <text x="504" y="221" class="cap">1.4.200 の注釈送信はテキストのみ</text>
+
+  <!-- 3 ソースファイル名と行番号 -->
+  <rect x="472" y="244" width="368" height="64" rx="6" class="item-no"/>
+  <use href="#no" x="488" y="268"/>
+  <text x="504" y="263" class="b600">ソースファイル名と行番号</text>
+  <text x="504" y="281" class="cap">ソースマップが無いため。エージェントは</text>
+  <text x="504" y="297" class="cap">届いたセレクタで grep して探す</text>
+
+  <!-- 4 Cookie・ログイン情報・フォームの値 -->
+  <rect x="472" y="320" width="368" height="48" rx="6" class="item-no"/>
+  <use href="#no" x="488" y="344"/>
+  <text x="504" y="339" class="b600">Cookie・ログイン情報・フォームに入れた値</text>
+  <text x="504" y="357" class="cap">（選んだ要素の中に含まれていない限り）</text>
+
+  <!-- 補足: だからエージェントは自分で探す -->
+  <rect x="472" y="396" width="368" height="64" rx="6" fill="none" stroke="#D0D7DE" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="488" y="422" class="cap">→ だから Claude Code は、届いたセレクタや文字で</text>
+  <text x="488" y="440" class="cap">　 リポを grep して該当ファイルを自分で探す（図 14 の 4）</text>
+
+  <!-- 下帯: 業務での注意 -->
+  <rect x="24" y="496" width="832" height="56" rx="8" fill="#FFF8C5" stroke="#BF8700" stroke-width="1.5"/>
+  <text x="40" y="519" class="body"><tspan font-weight="600" fill="#7D4E00">業務での注意:</tspan> 要素の中身の文字（個人情報・社外秘）は、選んだ要素に含まれていればそのまま送られる</text>
+  <text x="40" y="539" class="cap">送ってよい画面・要素かを先に判断する → 付録 E（業務での判断基準）を参照</text>
+</svg>
