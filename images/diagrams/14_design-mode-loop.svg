@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 512" width="880" height="512" role="img" aria-labelledby="t d">
+  <title id="t">Design Mode のループ</title>
+  <desc id="d">ブラウザで画面を直す 1 周を 6 枚のカードで示す。上の段は左から右へ 1、2、3。下の段は右から左へ 4、5、6。1 ブラウザで要素をクリック: 「ページ要素に注釈を付ける」モードで直したい要素をクリックし、コメントと意図（変更 / 質問）を書いて「追加」を押す。2 送信先に Claude Code を選ぶ: 「送信」を押すとメモの送信先が出るので、一覧から Claude Code のターミナルを選んで送る。3 Design Feedback が届く: 届く中身はテキストのみで画像は無い。セレクタ dd#total、要素の HTML、計算済み CSS（例 color: rgb(255,255,255)）、画面上の位置、あなたのメモと意図。4 Claude Code がファイルを直す: 届いたセレクタで grep して場所を探し、例えば public/style.css を 1 行直す。直したら diff で意図どおりか確かめる。5 ブラウザが自動で再読み込み: dev サーバー（npm run dev）がファイルの変更を fs.watch で検知し、ブラウザへ再読み込みを通知する。手で ⌘R を押さなくてよい。6 確認 → 差分を読む → PR: もう一度要素をクリックして直ったか確認し、直っていれば Source Control で diff を読み、コミットして PR を作る。直っていなければ 6 から 1 へ戻る点線の矢印があり、同じ要素をもう一度クリックして伝え直す。色分けは、ブラウザ（Orca）のステップが青、Claude Code のステップが橙、git / PR のステップが紫。下部の補足: Orca 1.4.200 の日本語 UI では Design Mode のボタンは 2 つ。「ページ要素を取得する」は選んだ要素の情報をクリップボードにコピー、「ページ要素に注釈を付ける」はエージェントに送信で、この図は後者。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57606A"/>
+    </marker>
+    <marker id="arrow-loop" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#BF8700"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif; fill: #1F2328; }
+      .title { font-size: 20px; font-weight: bold; }
+      .body { font-size: 13px; }
+      .b600 { font-size: 13px; font-weight: 600; }
+      .cap { font-size: 12px; fill: #57606A; }
+      .mono12 { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+      .mid { text-anchor: middle; }
+      .num { font-size: 12px; font-weight: 700; text-anchor: middle; }
+      .box { stroke-width: 1.5; }
+      .arrow { fill: none; stroke: #57606A; stroke-width: 1.75; marker-end: url(#arrow); }
+      .loop { fill: none; stroke: #BF8700; stroke-width: 1.5; stroke-dasharray: 5 4; marker-end: url(#arrow-loop); }
+    </style>
+  </defs>
+
+  <!-- 背景カード -->
+  <rect x="0.5" y="0.5" width="879" height="511" rx="12" fill="#FFFFFF" stroke="#D0D7DE"/>
+
+  <!-- タイトル -->
+  <text x="24" y="40" class="title">Design Mode のループ: クリックして伝える → 直る → 確かめる</text>
+  <text x="24" y="62" class="cap">注釈（Design Feedback）を送ると Claude Code が直し、ブラウザが自動で再読み込みする</text>
+
+  <!-- 凡例（色分け） -->
+  <rect x="544" y="52" width="12" height="12" rx="2" fill="#DDF4FF" stroke="#0969DA"/>
+  <text x="562" y="62" class="cap">ブラウザ（Orca）</text>
+  <rect x="684" y="52" width="12" height="12" rx="2" fill="#FFF1E5" stroke="#D97757"/>
+  <text x="702" y="62" class="cap">Claude Code</text>
+  <rect x="784" y="52" width="12" height="12" rx="2" fill="#FBEFFF" stroke="#8250DF"/>
+  <text x="802" y="62" class="cap">git / PR</text>
+
+  <!-- 1: ブラウザで要素をクリック（上段・左） -->
+  <rect x="24" y="84" width="256" height="124" rx="8" fill="#DDF4FF" stroke="#0969DA" class="box"/>
+  <circle cx="46" cy="106" r="10" fill="#FFFFFF" stroke="#0969DA" stroke-width="1.5"/>
+  <text x="46" y="110.5" class="num" fill="#0969DA">1</text>
+  <text x="64" y="110.5" class="b600" fill="#0969DA">ブラウザで要素をクリック</text>
+  <text x="40" y="132" class="cap">「ページ要素に注釈を付ける」モードで</text>
+  <text x="40" y="148" class="cap">直したい要素をクリックする</text>
+  <text x="40" y="164" class="cap">コメントと意図（変更 / 質問）を書き、</text>
+  <text x="40" y="180" class="cap">「追加」を押す</text>
+
+  <!-- 1 → 2 -->
+  <path d="M280,146 H312" class="arrow"/>
+
+  <!-- 2: 送信先に Claude Code を選ぶ（上段・中） -->
+  <rect x="312" y="84" width="256" height="124" rx="8" fill="#DDF4FF" stroke="#0969DA" class="box"/>
+  <circle cx="334" cy="106" r="10" fill="#FFFFFF" stroke="#0969DA" stroke-width="1.5"/>
+  <text x="334" y="110.5" class="num" fill="#0969DA">2</text>
+  <text x="352" y="110.5" class="b600" fill="#0969DA">送信先に Claude Code を選ぶ</text>
+  <text x="328" y="132" class="cap">「送信」を押す → メモの送信先が出る</text>
+  <text x="328" y="148" class="cap">一覧から Claude Code の</text>
+  <text x="328" y="164" class="cap">ターミナルを選んで送る</text>
+
+  <!-- 2 → 3 -->
+  <path d="M568,146 H600" class="arrow"/>
+
+  <!-- 3: Design Feedback が届く（上段・右） -->
+  <rect x="600" y="84" width="256" height="124" rx="8" fill="#FFF1E5" stroke="#D97757" class="box"/>
+  <circle cx="622" cy="106" r="10" fill="#FFFFFF" stroke="#D97757" stroke-width="1.5"/>
+  <text x="622" y="110.5" class="num" fill="#9A4A2B">3</text>
+  <text x="640" y="110.5" class="b600" fill="#9A4A2B">Design Feedback が届く</text>
+  <text x="616" y="132" class="cap">届く中身（テキストのみ、画像は無い）:</text>
+  <text x="616" y="148" class="cap">・セレクタ <tspan class="mono12">dd#total</tspan>　・要素の HTML</text>
+  <text x="616" y="164" class="cap">・計算済み CSS（色・サイズ・余白）</text>
+  <text x="616" y="180" class="cap">　例 <tspan class="mono12">color: rgb(255,255,255)</tspan></text>
+  <text x="616" y="196" class="cap">・画面上の位置　・あなたのメモと意図</text>
+
+  <!-- 3 → 4（右列を下へ） -->
+  <path d="M728,208 V288" class="arrow"/>
+  <text x="716" y="252" class="cap" text-anchor="end">メモを読んで作業</text>
+
+  <!-- 4: Claude Code がファイルを直す（下段・右） -->
+  <rect x="600" y="288" width="256" height="124" rx="8" fill="#FFF1E5" stroke="#D97757" class="box"/>
+  <circle cx="622" cy="310" r="10" fill="#FFFFFF" stroke="#D97757" stroke-width="1.5"/>
+  <text x="622" y="314.5" class="num" fill="#9A4A2B">4</text>
+  <text x="640" y="314.5" class="b600" fill="#9A4A2B">Claude Code がファイルを直す</text>
+  <text x="616" y="336" class="cap">届いたセレクタで grep して場所を探す</text>
+  <text x="616" y="352" class="cap">例: <tspan class="mono12">public/style.css</tspan> を 1 行直す</text>
+  <text x="616" y="368" class="cap">直したら diff で意図どおりか確かめる</text>
+
+  <!-- 4 → 5（左向き） -->
+  <path d="M600,350 H568" class="arrow"/>
+
+  <!-- 5: ブラウザが自動で再読み込み（下段・中） -->
+  <rect x="312" y="288" width="256" height="124" rx="8" fill="#DDF4FF" stroke="#0969DA" class="box"/>
+  <circle cx="334" cy="310" r="10" fill="#FFFFFF" stroke="#0969DA" stroke-width="1.5"/>
+  <text x="334" y="314.5" class="num" fill="#0969DA">5</text>
+  <text x="352" y="314.5" class="b600" fill="#0969DA">ブラウザが自動で再読み込み</text>
+  <text x="328" y="336" class="cap">dev サーバー（<tspan class="mono12">npm run dev</tspan>）が</text>
+  <text x="328" y="352" class="cap">ファイルの変更を検知（<tspan class="mono12">fs.watch</tspan>）し</text>
+  <text x="328" y="368" class="cap">ブラウザへ再読み込みを通知する</text>
+  <text x="328" y="384" class="cap">手で ⌘R を押さなくてよい</text>
+
+  <!-- 5 → 6（左向き） -->
+  <path d="M312,350 H280" class="arrow"/>
+
+  <!-- 6: 確認 → 差分を読む → PR（下段・左） -->
+  <rect x="24" y="288" width="256" height="124" rx="8" fill="#FBEFFF" stroke="#8250DF" class="box"/>
+  <circle cx="46" cy="310" r="10" fill="#FFFFFF" stroke="#8250DF" stroke-width="1.5"/>
+  <text x="46" y="314.5" class="num" fill="#8250DF">6</text>
+  <text x="64" y="314.5" class="b600" fill="#8250DF">確認 → 差分を読む → PR</text>
+  <text x="40" y="336" class="cap">もう一度要素をクリックして直ったか確認</text>
+  <text x="40" y="352" class="cap">直っていれば Source Control で</text>
+  <text x="40" y="368" class="cap">差分（<tspan class="mono12">diff</tspan>）を読み、コミット → PR</text>
+
+  <!-- 6 → 1（直っていなければもう一度） -->
+  <path d="M152,288 V208" class="loop"/>
+  <text x="164" y="242" class="cap" fill="#BF8700">直っていなければ、</text>
+  <text x="164" y="258" class="cap" fill="#BF8700">もう一度 1 から（同じ要素をクリックして伝え直す）</text>
+
+  <!-- 下帯: 補足 -->
+  <rect x="24" y="432" width="832" height="56" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
+  <text x="40" y="455" class="body"><tspan font-weight="600">補足:</tspan> Orca 1.4.200 の日本語 UI では、Design Mode のボタンは 2 つ</text>
+  <text x="40" y="475" class="cap">「ページ要素を取得する」= 選んだ要素の情報をクリップボードにコピー ／ 「ページ要素に注釈を付ける」= エージェントに送信（この図は後者）</text>
+</svg>
