@@ -2,9 +2,10 @@
 
 [第1弾](https://github.com/misshii3/orca-handson) では同じバグ修正を Claude Code と Codex に競わせて PR を作り、
 [第2弾](https://github.com/misshii3/orca-handson-2) では Issue を起点に 3 本のタスクを並列で進めてマージとコンフリクト解消まで通しました。
+
 第3弾のテーマは **画面を見ながら直す** です。Orca の **ワークツリーごとのブラウザ** で注文確認ページを開き、
-**Design Mode**（崩れている要素をクリックしてエージェントに送る）で Claude Code に見た目を直させ、
-並行して Codex に機能を追加させ、ブラウザで確かめて PR → マージ → 後片付けまでを一人で通します。
+**Design Mode**（崩れている要素をクリックしてメモを付け、エージェントに送る）で Claude Code に見た目を直させます。
+並行して別のワークツリーで Codex に機能を追加させ、どちらもブラウザで確かめてから PR → マージ → 後片付けまでを一人で通します。
 
 ## 前提
 
@@ -25,20 +26,30 @@
 
 ## 進め方（合計 約 100 分）
 
-[01_handson.md](./01_handson.md) を上から順に進めてください。準備（1〜3 章）→ 本編（4〜11 章）→ 付録の順です。
+[01_handson.md](./01_handson.md) を上から順に進めてください。
+
+| 区分 | 章 | 内容 | 目安 |
+|---|---|---|---|
+| 準備 | 1〜3 | ツールの確認、テンプレートから複製して Issue を作成、Orca に追加して Yolo に切り替え | 20 分 |
+| 本編 | 4〜10 | ワークツリー 2 本と dev サーバー、Design Mode で崩れ 4 か所を修正、Codex の機能追加を確認、PR 2 本をマージ | 75 分 |
+| 後片付け | 11 | dev サーバー停止、ワークツリー削除、Yolo を手動に戻す | 5 分 |
+| 付録 | A〜E | Codex との比較、エージェントにブラウザを操作させる、トラブルシューティング、業務での判断基準 | 任意 |
+
+章ごとの作業場所（#1 のワークツリー、#2 のワークツリー、プライマリ）と、先に知っておきたい「つまずきやすいところ」は `01_handson.md` の 0 章にまとめてあります。
 Orca の概念（worktree、ADE、権限の 3 層）は第1弾の [01_overview.md](https://github.com/misshii3/orca-handson/blob/main/01_overview.md) を、
 Issue からのワークツリー作成・PR パネル・マージの操作は第2弾の [01_handson.md](https://github.com/misshii3/orca-handson-2/blob/main/01_handson.md) を参照します。
 
 ## このリポジトリの使い方（参加者向け）
 
-このリポジトリは **テンプレートリポジトリ** です。自分のアカウントに複製し、同梱のスクリプトでタスク用の Issue を作ってから使います。
+このリポジトリは **テンプレートリポジトリ** です。自分のアカウントに複製し、同梱のスクリプトでタスク用の Issue を作ってから使います
+（テンプレートから複製しても Issue はコピーされないため、スクリプトで作ります）。
 詳しい手順は `01_handson.md` の 2 章にありますが、要点だけ書くと次のコマンドです。
 
 ```bash
 gh repo create orca-handson-3 --template misshii3/orca-handson-3 --private --clone
 cd orca-handson-3
 npm test                      # 26 件すべて成功するのが正常です
-npm run dev                   # http://localhost:3000 に注文確認ページが出ます（Ctrl+C で止める）
+npm run dev                   # http://localhost:3000 に崩れた注文確認ページが出ます。見たら Ctrl+C で止めてから次へ
 bash scripts/seed-issues.sh   # 自分のリポジトリに Issue #1〜#2 を作ります
 ```
 
