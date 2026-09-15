@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 392" width="880" height="392" role="img" aria-labelledby="t d">
   <title id="t">PR の流れ</title>
-  <desc id="d">1 つの PR が左から右へ 5 段階で進む。1 PR を作成（Source Control パネル、コミットメッセージに Closes #N を書く）、2 チェック実行中（GitHub Actions が npm test を実行）、3 チェック成功（PR パネルに緑のチェックが付く）、4 マージ（PR パネルのマージボタン、リポ既定の方式）、5 Issue クローズ（Closes #N により自動で閉じる）。チェック実行中から下に分岐してチェック失敗になることがあり、赤いチップが付いたら Fix broken checks でエージェントに渡し、直して push すると先頭に戻る。下の帯に、main が進むと他の PR に競合が出ることがある（図 11）と注記。</desc>
+  <desc id="d">1 つの PR が左から右へ 5 段階で進む。1 PR を作成（Source Control パネル、コミットメッセージに Closes #N を書く）、2 チェック実行中（GitHub Actions が npm test を実行）、3 チェック成功（PR パネルに緑のチェックが付く）、4 マージ（PR パネルのマージボタン、リポ既定の方式）、5 Issue クローズ（Closes #N により自動で閉じる）。チェック実行中から下に分岐してチェック失敗になることがあり、赤いチップが付いたら Fix broken checks でエージェントに渡し、直して push すると先頭に戻る。下の帯に、main が進むと他の PR に競合が出ることがある（10-4 の注意）と注記。</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57606A"/>
@@ -80,5 +80,5 @@
   <!-- 下帯: ポイント -->
   <rect x="24" y="324" width="832" height="44" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
   <text x="40" y="351" class="body" font-weight="600">ポイント:</text>
-  <text x="102" y="351" class="body">main が進むと、他の PR に競合が出ることがある（→ 図 11）。マージしたら、残った PR の状態を見直す</text>
+  <text x="102" y="351" class="body">main が進むと、他の PR に競合が出ることがある（→ 10-4 の注意）。マージしたら、残った PR の状態を見直す</text>
 </svg>
